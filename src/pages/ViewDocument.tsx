@@ -1,6 +1,6 @@
 import React from "react";
 
-const Home = () => {
+const ViewDocument = () => {
   return (
     <div>
       <section className="section-padding">
@@ -17,4 +17,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ViewDocument;

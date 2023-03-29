@@ -26,7 +26,7 @@ const Signup = () => {
     };
     dispatch(setUserDetails(payload));
     dispatch(setAuthenticated(true));
-    navigate("/");
+    navigate("/dashboard");
     resetForm();
   };
 

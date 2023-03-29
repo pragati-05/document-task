@@ -32,7 +32,7 @@ const Login = () => {
     ) {
       resetForm();
       dispatch(setAuthenticated(true));
-      navigate("/");
+      navigate("/dashboard");
     } else {
       setErrors({
         email: "Invalid Credentials",

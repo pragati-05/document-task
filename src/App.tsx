@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import AddDocument from "./pages/AddDocument";
+import ViewDocument from "./pages/ViewDocument";
 
 function App() {
   return (
@@ -15,6 +18,10 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/add-document" element={<AddDocument />}></Route>
+        <Route path="/edit-document/:id" element={<AddDocument />}></Route>
+        <Route path="/view-document" element={<ViewDocument />}></Route>
       </Routes>
     </BrowserRouter>
   );
