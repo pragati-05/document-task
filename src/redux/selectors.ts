@@ -11,3 +11,9 @@ export const getDocuments = (state: any) => {
     return state.documents;
 };
 
+export const getDocumentsById = (state: any, id: string) => {
+    let data = [...state.documents];
+    data = data.filter((item) => item.docId === id);
+    return !!data.length ? data : [];
+};
+

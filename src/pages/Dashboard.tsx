@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   let navigate = useNavigate();
   const documents = useSelector(getDocuments);
-
+  const deleteDocument = () => {};
   return (
     <div>
       <section className="section-padding">
@@ -26,7 +26,7 @@ const Dashboard = () => {
                 type="button"
                 className="btn btn-primary"
                 style={{ float: "right" }}
-                onClick={() => navigate('/add-document')}
+                onClick={() => navigate("/add-document")}
               >
                 Add Documents
               </button>
@@ -36,10 +36,11 @@ const Dashboard = () => {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Action</th>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -47,19 +48,33 @@ const Dashboard = () => {
                     documents.map((item: any, index: number) => {
                       return (
                         <tr key={index}>
-                          <th scope="row">1</th>
-                          <td>{item.id}</td>
-                          <td>{item.name}</td>
+                          <th>{index + 1}</th>
+                          <td>{item.docId}</td>
+                          <td>{item.docName}</td>
+                          <td>{item.docType}</td>
                           <td>
-                            <span style={{ color: "blue", cursor: "pointer" }}>
+                            <span
+                              style={{ color: "blue", cursor: "pointer" }}
+                              onClick={() =>
+                                navigate(`/view-document/${item.docId}`)
+                              }
+                            >
                               View
                             </span>{" "}
                             |{" "}
-                            <span style={{ color: "blue", cursor: "pointer" }}>
+                            <span
+                              style={{ color: "blue", cursor: "pointer" }}
+                              onClick={() =>
+                                navigate(`/edit-document/${item.docId}`)
+                              }
+                            >
                               Edit
                             </span>{" "}
                             |{" "}
-                            <span style={{ color: "blue", cursor: "pointer" }}>
+                            <span
+                              style={{ color: "blue", cursor: "pointer" }}
+                              onClick={() => deleteDocument()}
+                            >
                               Delete
                             </span>
                           </td>
@@ -68,7 +83,7 @@ const Dashboard = () => {
                     })
                   ) : (
                     <tr className="text-center">
-                      <td colSpan={4}>No document found</td>
+                      <td colSpan={5}>No document found</td>
                     </tr>
                   )}
                 </tbody>

@@ -21,7 +21,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/add-document" element={<AddDocument />}></Route>
         <Route path="/edit-document/:id" element={<AddDocument />}></Route>
-        <Route path="/view-document" element={<ViewDocument />}></Route>
+        <Route path="/view-document/:id" element={<ViewDocument />}></Route>
       </Routes>
     </BrowserRouter>
   );
