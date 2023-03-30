@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteDocument } from "../redux/action";
+import { deleteDocument, setShowLoader } from "../redux/action";
+import { LOADER_TIMEOUT } from "../redux/constants";
 import { getDocumentsById } from "../redux/selectors";
 
 const ViewDocument = () => {
@@ -11,8 +12,12 @@ const ViewDocument = () => {
   const documents = useSelector((state) => getDocumentsById(state, id));
 
   const deleteDoc = () => {
-    dispatch(deleteDocument(id));
-    navigate('/dashboard');
+    dispatch(setShowLoader(true));
+    setTimeout(() => {
+      dispatch(deleteDocument(id));
+      dispatch(setShowLoader(false));
+      navigate("/dashboard");
+    }, LOADER_TIMEOUT);
   };
 
   return (

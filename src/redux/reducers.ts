@@ -4,12 +4,14 @@ import {
   SET_DOCUMENTS,
   UPDATE_DOCUMENT,
   DELETE_DOCUMENT,
+  SET_LOADER,
 } from "./constants";
 
 const initialState = {
   usersData: null,
   authenticated: false,
   documents: [],
+  loaderVisible: false,
 };
 const userReducer = (
   state = initialState,
@@ -29,10 +31,7 @@ const userReducer = (
     case SET_DOCUMENTS:
       let allDocs: any = state.documents;
       let id = allDocs.length >= 1 ? allDocs[allDocs.length - 1].docId : 0;
-      allDocs = [
-        ...allDocs,
-        { ...action.payload, docId: id + 1 },
-      ];
+      allDocs = [...allDocs, { ...action.payload, docId: id + 1 }];
       return {
         ...state,
         documents: allDocs,
@@ -42,7 +41,10 @@ const userReducer = (
       let index = updateDoc?.findIndex(
         (obj: any) => obj.docId === Number(action.payload.id)
       );
-      updateDoc[index] = { ...action.payload.data, docId: Number(action.payload.id) };
+      updateDoc[index] = {
+        ...action.payload.data,
+        docId: Number(action.payload.id),
+      };
       return {
         ...state,
         documents: updateDoc,
@@ -55,6 +57,11 @@ const userReducer = (
       return {
         ...state,
         documents: data,
+      };
+    case SET_LOADER:
+      return {
+        ...state,
+        loaderVisible: action.payload,
       };
     default:
       return state;

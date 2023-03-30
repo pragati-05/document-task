@@ -2,9 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDocuments } from "../redux/selectors";
 import { useNavigate } from "react-router-dom";
-import { deleteDocument } from "../redux/action";
+import { deleteDocument, setShowLoader } from "../redux/action";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { LOADER_TIMEOUT } from "../redux/constants";
 
 const Dashboard = () => {
   let navigate = useNavigate();
@@ -13,20 +14,15 @@ const Dashboard = () => {
   const documents = useSelector(getDocuments);
 
   const deleteDoc = (id: string) => {
-    dispatch(deleteDocument(id));
+    dispatch(setShowLoader(true));
+    setTimeout(() => {
+      dispatch(deleteDocument(id));
+      dispatch(setShowLoader(false));
+      navigate("/dashboard");
+    }, LOADER_TIMEOUT);
   };
 
   const columns = [
-    // {
-    //   dataField: "serial",
-    //   isDummyField: true,
-    //   text: "#",
-    //   formatter: (cell: any, row: any, rowIndex: any) => {
-    //     return (
-    //       <span>{rowIndex + 1}</span>
-    //     );
-    //   },
-    // },
     {
       dataField: "docId",
       text: "ID",

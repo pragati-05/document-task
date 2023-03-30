@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getUserDetails } from "../redux/selectors";
 import { useDispatch } from "react-redux";
-import { setAuthenticated } from "../redux/action";
+import { setAuthenticated, setShowLoader } from "../redux/action";
+import { LOADER_TIMEOUT } from "../redux/constants";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -30,9 +31,13 @@ const Login = () => {
       userDetails.email === payload.email &&
       userDetails.password === payload.password
     ) {
-      resetForm();
       dispatch(setAuthenticated(true));
-      navigate("/dashboard");
+      dispatch(setShowLoader(true));
+      setTimeout(() => {
+        resetForm();
+        dispatch(setShowLoader(false));
+        navigate("/dashboard");
+      }, LOADER_TIMEOUT);
     } else {
       if (userDetails.email !== payload.email) {
         setErrors({

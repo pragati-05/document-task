@@ -3,7 +3,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setAuthenticated, setUserDetails } from "../redux/action";
+import { setAuthenticated, setShowLoader, setUserDetails } from "../redux/action";
+import { LOADER_TIMEOUT } from "../redux/constants";
 
 const Signup = () => {
   let navigate = useNavigate();
@@ -26,8 +27,12 @@ const Signup = () => {
     };
     dispatch(setUserDetails(payload));
     dispatch(setAuthenticated(true));
-    navigate("/dashboard");
-    resetForm();
+    dispatch(setShowLoader(true));
+    setTimeout(() => {
+      resetForm();
+      dispatch(setShowLoader(false));
+      navigate("/dashboard");
+    }, LOADER_TIMEOUT);
   };
 
   return (

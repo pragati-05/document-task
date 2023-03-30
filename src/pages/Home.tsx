@@ -6,10 +6,16 @@ const Home = () => {
       <section className="section-padding">
         <div className="container">
           <div
-            className="d-flex justify-content-center align-items-center"
             style={{ padding: "50px" }}
           >
-
+            <h3
+              style={{
+                paddingBottom: "10px",
+                marginBottom: "20px",
+              }}
+            >
+              Welcome!!
+            </h3>
           </div>
         </div>
       </section>

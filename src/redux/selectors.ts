@@ -17,3 +17,7 @@ export const getDocumentsById = (state: any, id: string) => {
     return !!data.length ? data : [];
 };
 
+export const getShowLoader = (state: any) => {
+    return state.loaderVisible;
+};
+

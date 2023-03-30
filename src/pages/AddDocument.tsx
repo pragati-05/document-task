@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { setDocuments, updateDocument } from "../redux/action";
+import { setDocuments, setShowLoader, updateDocument } from "../redux/action";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDocumentsById } from "../redux/selectors";
+import { LOADER_TIMEOUT } from "../redux/constants";
 
 interface document {
   docName: string;
@@ -36,13 +37,17 @@ const AddDocument = () => {
       docType: values.docType,
       description: values.description,
     };
-    resetForm();
     if (id) {
       dispatch(updateDocument({id: id, data: payload}));
     } else {
       dispatch(setDocuments(payload));
     }
-    navigate("/dashboard");
+    dispatch(setShowLoader(true));
+    setTimeout(() => {
+      resetForm();
+      dispatch(setShowLoader(false));
+      navigate("/dashboard");
+    }, LOADER_TIMEOUT);
   };
 
   return (
