@@ -13,7 +13,7 @@ export const getDocuments = (state: any) => {
 
 export const getDocumentsById = (state: any, id: string) => {
     let data = [...state.documents];
-    data = data.filter((item) => item.docId === id);
+    data = data.filter((item) => item.docId === Number(id));
     return !!data.length ? data : [];
 };
 

@@ -14,6 +14,8 @@
     "bootstrap": "^5.2.3",
     "formik": "^2.2.9",
     "react": "^18.2.0",
+    "react-bootstrap-table-next": "^4.0.3",
+    "react-bootstrap-table2-paginator": "^2.1.2",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
@@ -46,5 +48,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-bootstrap-table-next": "^4.0.18",
+    "@types/react-bootstrap-table2-paginator": "^2.1.2"
   }
 }

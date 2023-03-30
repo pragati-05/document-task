@@ -61,6 +61,19 @@ const Header = () => {
                   Home
                 </NavLink>
               </li>
+              {userAuthenticated && (
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }: any) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    aria-current="page"
+                    to="/dashboard"
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
             </ul>
             <div className="d-flex">
               {!userAuthenticated && (

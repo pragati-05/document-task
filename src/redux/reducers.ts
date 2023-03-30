@@ -28,9 +28,10 @@ const userReducer = (
       };
     case SET_DOCUMENTS:
       let allDocs: any = state.documents;
+      let id = allDocs.length >= 1 ? allDocs[allDocs.length - 1].docId : 0;
       allDocs = [
         ...allDocs,
-        { ...action.payload, docId: `DOC_${allDocs.length + 1}` },
+        { ...action.payload, docId: id + 1 },
       ];
       return {
         ...state,
@@ -39,9 +40,9 @@ const userReducer = (
     case UPDATE_DOCUMENT:
       let updateDoc: any = state.documents;
       let index = updateDoc?.findIndex(
-        (obj: any) => obj.docId === action.payload.id
+        (obj: any) => obj.docId === Number(action.payload.id)
       );
-      updateDoc[index] = { ...action.payload.data, docId: action.payload.id };
+      updateDoc[index] = { ...action.payload.data, docId: Number(action.payload.id) };
       return {
         ...state,
         documents: updateDoc,
@@ -49,7 +50,7 @@ const userReducer = (
     case DELETE_DOCUMENT:
       let removeDoc = state.documents;
       let data = removeDoc.filter((object: any) => {
-        return object.docId !== action.payload;
+        return object.docId !== Number(action.payload);
       });
       return {
         ...state,

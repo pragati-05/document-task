@@ -34,9 +34,21 @@ const Login = () => {
       dispatch(setAuthenticated(true));
       navigate("/dashboard");
     } else {
-      setErrors({
-        email: "Invalid Credentials",
-      });
+      if (userDetails.email !== payload.email) {
+        setErrors({
+          email: "Invalid Email",
+        });
+      }
+      if (userDetails.password !== payload.password) {
+        setErrors({
+          password: "Invalid Password",
+        });
+      }
+      if (userDetails.email !== payload.email && userDetails.password !== payload.password) {
+        setErrors({
+          email: "Invalid Credentials",
+        });
+      }
     }
   };
 
