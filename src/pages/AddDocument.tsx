@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { setDocuments, updateDocuments } from "../redux/action";
+import { setDocuments, updateDocument } from "../redux/action";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDocumentsById } from "../redux/selectors";
 
@@ -38,7 +38,7 @@ const AddDocument = () => {
     };
     resetForm();
     if (id) {
-      dispatch(updateDocuments({id: id, data: payload}));
+      dispatch(updateDocument({id: id, data: payload}));
     } else {
       dispatch(setDocuments(payload));
     }

@@ -1,4 +1,4 @@
-import { SET_AUTHENTICATED, SET_USER_DETAILS, SET_DOCUMENTS, UPDATE_DOCUMENTS } from "./constants";
+import { SET_AUTHENTICATED, SET_USER_DETAILS, SET_DOCUMENTS, UPDATE_DOCUMENT, DELETE_DOCUMENT } from "./constants";
 
 export function setUserDetails(data: any) {
     return {
@@ -21,9 +21,16 @@ export function setDocuments(data: any) {
   };
 }
 
-export function updateDocuments(data: any) {
+export function updateDocument(data: any) {
   return {
-    type: UPDATE_DOCUMENTS,
+    type: UPDATE_DOCUMENT,
+    payload: data,
+  };
+}
+
+export function deleteDocument(data: any) {
+  return {
+    type: DELETE_DOCUMENT,
     payload: data,
   };
 }

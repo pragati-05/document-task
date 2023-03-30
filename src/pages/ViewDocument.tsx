@@ -1,13 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { deleteDocument } from "../redux/action";
 import { getDocumentsById } from "../redux/selectors";
 
 const ViewDocument = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   let { id = "" } = useParams();
   const documents = useSelector((state) => getDocumentsById(state, id));
-  const deleteDocument = () => {};
+
+  const deleteDoc = () => {
+    dispatch(deleteDocument(id));
+    navigate('/dashboard');
+  };
+
   return (
     <div>
       <section className="section-padding">
@@ -36,7 +43,7 @@ const ViewDocument = () => {
                   type="button"
                   className="btn btn-primary"
                   style={{ float: "right" }}
-                  onClick={() => deleteDocument()}
+                  onClick={() => deleteDoc()}
                 >
                   Delete
                 </button>

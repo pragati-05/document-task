@@ -1,12 +1,19 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDocuments } from "../redux/selectors";
 import { useNavigate } from "react-router-dom";
+import { deleteDocument } from "../redux/action";
 
 const Dashboard = () => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const documents = useSelector(getDocuments);
-  const deleteDocument = () => {};
+
+  const deleteDoc = (id: string) => {
+    dispatch(deleteDocument(id));
+  };
+
   return (
     <div>
       <section className="section-padding">
@@ -73,7 +80,7 @@ const Dashboard = () => {
                             |{" "}
                             <span
                               style={{ color: "blue", cursor: "pointer" }}
-                              onClick={() => deleteDocument()}
+                              onClick={() => deleteDoc(item.docId)}
                             >
                               Delete
                             </span>
