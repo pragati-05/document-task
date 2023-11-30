@@ -62,7 +62,7 @@ const AddDocument = () => {
                 marginBottom: "20px",
               }}
             >
-              ADD DOCUMENT
+              ADD DOCUMENTS - test
             </h6>
             <div
               className="d-flex justify-content-center align-items-center"
